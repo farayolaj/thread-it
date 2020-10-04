@@ -2,7 +2,7 @@ import React from 'react';
 import NoteFooter from '../NoteFooter';
 
 export default {
-  title: 'New Note Footer',
+  title: 'Core/Note Footer',
   component: NoteFooter
 };
 
@@ -10,11 +10,13 @@ const Template = args => <NoteFooter {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  tags: ['main', 'nationality']
+  tags: ['main', 'nationality'],
+  time: 1601809200000
 };
 
-export const DefaultWithLongList = Template.bind({});
-DefaultWithLongList.args = {
+export const DefaultWithLongTags = Template.bind({});
+DefaultWithLongTags.args = {
+  ...Default.args,
   tags: ['main', 'colours', 'body', 'format', 'todo']
 };
 

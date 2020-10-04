@@ -1,10 +1,11 @@
 import React from 'react';
 import { Flex, IconButton, Text } from '@chakra-ui/core';
-// import { BsThreeDotsVertical } from 'react-icons/bs';
+import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
-import { TagBar } from './TagBar';
 
-export default function NewNoteFooter({ tags, inEdit, onTagAdd, onDelete, onSave }) {
+import TagBar from './TagBar';
+
+export default function NoteFooter({ time, tags, inEdit, onTagAdd, onDelete, toggleEdit}) {
 
   return (
     <Flex w="100%" direction="row" justify="space-between" align="center">
@@ -12,37 +13,39 @@ export default function NewNoteFooter({ tags, inEdit, onTagAdd, onDelete, onSave
       <IconButton
         icon="edit"
         variant={inEdit ? 'solid' : 'outline'}
-        size="sm"
-        onClick={onSave}
+        size="xs"
+        onClick={toggleEdit}
         isRound />
       <IconButton
         icon="delete"
         variant="outline"
-        size="sm"
+        size="xs"
         ml="0"
         onClick={onDelete}
         isRound />
-      <Text fontSize="sm">10:05</Text>
+      <Text fontSize="xs" fontWeight="normal">
+        {DateTime.fromMillis(time).toLocaleString(DateTime.TIME_24_SIMPLE)}
+      </Text>
     </Flex>
   );
 }
 
-NewNoteFooter.propTypes = {
+NoteFooter.propTypes = {
+  /** Time note was created */
+  time: PropTypes.number,
   /** Tags to display */
   tags: TagBar.propTypes.tags,
-  /** Speciefies if footer should show edit menu instead */
+  /** Edit mode specifier */
   inEdit: PropTypes.bool,
   /** Function called when delete button is clicked */
   onDelete: PropTypes.func,
-  /** Function called when edit button is clicked */
-  onEdit: PropTypes.func,
-  /** Function called when save button is clicked */
-  onSave: PropTypes.func,
+  /** Toggle edit mode */
+  toggleEdit: PropTypes.func,
   /** Function called when add tag button is clicked */
   onTagAdd: PropTypes.func
 };
 
-NewNoteFooter.defaultProps = {
+NoteFooter.defaultProps = {
   tags: TagBar.defaultProps.tags,
   inEdit: false
 };

@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 import { handleChange } from '../utilities';
 
-// todo: pressing enter adds a tag
-
-export function TagInput({ tagInput, setTagInput, onEnter }) {
+export default function TagInput({ tagInput, setTagInput, onEnter }) {
   return (
     <Tag size="sm" minW="auto" mr={2}>
       <form onSubmit={onEnter}>
@@ -14,6 +12,8 @@ export function TagInput({ tagInput, setTagInput, onEnter }) {
           minW={16}
           variant="unstyled"
           size="sm"
+          fontSize="xs"
+          fontWeight="normal"
           value={tagInput}
           onChange={handleChange(setTagInput)}
           autoFocus />
