@@ -13,7 +13,7 @@ const Template = args => <Note {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   data: {
-    id: 1,
+    id: '1',
     content: 
       `It is pertinent that we know what is going on, as Nigerians.
       

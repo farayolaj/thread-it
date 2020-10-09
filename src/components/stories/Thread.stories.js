@@ -14,5 +14,5 @@ export const Default = Template.bind({});
 
 export const WithDate = Template.bind({});
 WithDate.args = {
-  date: DateTime.local()
+  date: DateTime.local().toISO()
 };

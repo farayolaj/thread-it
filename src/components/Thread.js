@@ -8,16 +8,18 @@ export default function Thread({ date }) {
   return (
     <Flex pl="10%" w="80vw" alignItems="center">
       {date ?
-        <MidLoopedLineSVG height={svgHeight} /> :
-        <LineSVG height={svgHeight} />
+        <DatedThreadSVG height={svgHeight} /> :
+        <ThreadSVG height={svgHeight} />
       }
-      {date ? <Text ml="5%" fontSize="sm">{date.toLocaleString(DateTime.DATE_FULL)}</Text> : null}
+      {date ? <Text ml="5%" fontSize="sm">
+        {DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED)}
+      </Text> : null}
     </Flex>
   );
 }
 
 // eslint-disable-next-line react/prop-types
-function MidLoopedLineSVG({ height }) {
+function DatedThreadSVG({ height }) {
   return (
     <svg viewBox="0 0 10 108" height={height}>
       <g>
@@ -35,7 +37,7 @@ function MidLoopedLineSVG({ height }) {
 }
 
 // eslint-disable-next-line react/prop-types
-function LineSVG({ height }) {
+function ThreadSVG({ height }) {
   return (
     <svg viewBox="0 0 10 108" height={height}>
       <line x1="5" y1="0" x2="5" y2="108" style={{ stroke: '#000000', strokeWidth: 1 }} />
@@ -44,5 +46,5 @@ function LineSVG({ height }) {
 }
 
 Thread.propTypes = {
-  date: PropTypes.instanceOf(DateTime)
+  date: PropTypes.string
 };

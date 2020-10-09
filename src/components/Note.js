@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import NoteFooter from './NoteFooter';
 import { handleChange } from '../utilities';
 
-export default function NewNote({ data: { /* id, */ content, tags, time }, hasFocus }) {
+export default function NewNote({ data: { id, content, tags, time }, hasFocus, getFocus }) {
   const [innerContent, setInnerContent] = useState(content);
   const [inEdit, shouldEdit] = useState(false);
 
@@ -32,6 +32,9 @@ export default function NewNote({ data: { /* id, */ content, tags, time }, hasFo
       borderStyle="solid"
       borderWidth="thin"
       borderColor="lightgray"
+      onClick={() => {
+        if (!hasFocus) getFocus(id);
+      }}
     >
       <Box
         d="flex"
@@ -69,7 +72,7 @@ export default function NewNote({ data: { /* id, */ content, tags, time }, hasFo
 NewNote.propTypes = {
   data: PropTypes.shape({
     /** Note id */
-    id: PropTypes.number,
+    id: PropTypes.string,
     /** Note content */
     content: PropTypes.string.isRequired,
     /** Tags applied to note */
@@ -78,7 +81,9 @@ NewNote.propTypes = {
     time: NoteFooter.propTypes.time
   }),
   /** denotes if note should be focused on */
-  hasFocus: PropTypes.bool
+  hasFocus: PropTypes.bool,
+  /** function to get focus */
+  getFocus: PropTypes.func
 };
 
 NewNote.defaultProps = {
