@@ -1,12 +1,11 @@
 import React from 'react';
 import { Input, Tag } from '@chakra-ui/core';
-import PropTypes from 'prop-types';
 
 import { handleChange } from '../utilities';
 
-export default function TagInput({ tagInput, setTagInput, onEnter }) {
+export default function TagInput({ tagInput, setTagInput, onEnter }: ITagInputProps): JSX.Element {
   return (
-    <Tag size="sm" minW="auto" mr={2}>
+    <Tag size="sm" minW="auto" mr={2} variant="footer" >
       <form onSubmit={onEnter}>
         <Input
           minW={16}
@@ -22,8 +21,8 @@ export default function TagInput({ tagInput, setTagInput, onEnter }) {
   );
 }
 
-TagInput.propTypes = {
-  tagInput: PropTypes.string,
-  setTagInput: PropTypes.func,
-  onEnter: PropTypes.func
-};
+export interface ITagInputProps {
+  tagInput: string;
+  setTagInput: (input: string) => void;
+  onEnter: () => void;
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 
-import Thread from '../Thread';
+import Thread, { IThreadProps } from '../Thread';
+import { IStory } from '../../types';
 
 export default {
   title: 'Core/Thread',
   component: Thread
 };
 
-const Template = args => <Thread {...args} />;
+const Template: IStory<IThreadProps> = args => <Thread {...args} />;
 
 export const Default = Template.bind({});
 
