@@ -68,7 +68,7 @@ interface IThreadGroupProps {
  */
 function Hanger({ tag = 'all' }: IHangerProps) {
   return (
-    <Box w="80vw" p={1} bgColor="secondary">
+    <Box w="80vw" p={1} bgColor="primary" color="white">
       <Text fontSize="sm" textAlign="center"><strong>{tag.toUpperCase()}</strong></Text>
     </Box>
   );

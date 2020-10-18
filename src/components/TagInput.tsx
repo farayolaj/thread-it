@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Tag } from '@chakra-ui/core';
 
-import { handleChange } from '../utilities';
+import { handleChange } from '../utils';
 
 export default function TagInput({ tagInput, setTagInput, onEnter }: ITagInputProps): JSX.Element {
   return (

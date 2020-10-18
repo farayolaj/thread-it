@@ -10,4 +10,6 @@ interface IHandleChange {
  * @param updateFunc Function to call with new value
  * @returns function that handles change
  */
-export const handleChange: IHandleChange = updateFunc => ev => updateFunc(ev.target?.value);
+const handleChange: IHandleChange = updateFunc => ev => updateFunc(ev.target?.value);
+
+export default handleChange;

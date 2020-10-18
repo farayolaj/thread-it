@@ -1,4 +1,4 @@
-import { mode } from '@chakra-ui/theme-tools';
+import { darken, lighten, mode } from '@chakra-ui/theme-tools';
 
 function footerVariant(props: Record<string, any>) {
   const { colorScheme } = props;
@@ -15,8 +15,31 @@ function footerVariant(props: Record<string, any>) {
   };
 }
 
+function primaryVariant(props: Record<string, any>) {
+  const { theme } = props;
+
+  const lightBg = lighten('primary', 0.5)(theme);
+  const darkBg = darken('primary', 0.5)(theme);
+  const bg = mode(lightBg, darkBg)(props);
+
+  return {
+    bg: 'primary',
+    color: 'white',
+    _active: {
+      bg
+    },
+    _hover: {
+      bg
+    }
+  };
+}
+
 export default {
+  defaultProps: {
+    variant: 'primary'
+  },
   variants: {
-    footer: footerVariant
+    footer: footerVariant,
+    primary: primaryVariant
   }
-};
+}; 

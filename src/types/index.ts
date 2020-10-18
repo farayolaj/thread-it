@@ -9,7 +9,17 @@ export interface INoteData {
   time: number;
 }
 
-export interface IStory<T> {
+export interface IUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  profilePic: string;
+}
+
+/**
+ * A generic interface for individual stories
+ */
+export interface IStory<T=unknown> {
   (args: T): JSX.Element;
   args?: T
 }

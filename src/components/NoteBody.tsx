@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Box, Textarea, Text } from '@chakra-ui/core';
 
-import { handleChange } from '../utilities';
+import { handleChange } from '../utils';
 import { NoteEditContext } from './Note';
 
 export default function NoteBody({ content }: INoteBodyProps): JSX.Element {
@@ -23,14 +23,14 @@ export default function NoteBody({ content }: INoteBodyProps): JSX.Element {
         value={innerContent}
         onChange={handleChange(setInnerContent)}
         resize="none"
+        px="0"
+        py="0"
         rows={6}
         h="auto"
         w="100%"
         autoFocus
       /> : (innerContent ?
         <Text
-          px={4}
-          py={2}
           whiteSpace="pre-wrap"
           overflowWrap="break-word"
         >
