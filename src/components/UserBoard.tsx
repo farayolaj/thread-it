@@ -20,11 +20,11 @@ export default function UserBoard({ user }: IUserBoardProps): JSX.Element {
       <Flex justifyContent="space-around">
         {!isUserPresent ?
           <>
-            <Button size="sm">Sign In</Button>
-            <Button size="sm">Sign Up</Button>
+            <Button size="sm" rounded="0">Sign In</Button>
+            <Button size="sm" rounded="0">Sign Up</Button>
           </> : <>
-            <Button size="sm" >Sign Out</Button>
-            <Button size="sm" >Settings</Button>
+            <Button size="sm" rounded="0">Sign Out</Button>
+            <Button size="sm" rounded="0">Settings</Button>
           </>
         }
       </Flex>

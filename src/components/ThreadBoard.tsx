@@ -18,7 +18,7 @@ export default function ThreadBoard({ thread }: IThreadBoardProps): JSX.Element 
   );
 
   return (
-    <Flex w="100%" overflowY="auto" direction="column" alignItems="center">
+    <Flex w="100%" overflowY="auto" direction="column" alignItems="center" py={3}>
       <Hanger />
       {Object.entries(groupedThread).map(([date, notes]) =>
         <ThreadGroup key={date} date={date} notes={notes} focus={focus} getFocus={setFocus} />)}

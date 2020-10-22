@@ -13,5 +13,5 @@ const Template: IStory<IThreadBoardProps> = args => <ThreadBoard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  thread: data
+  thread: data.thread
 };

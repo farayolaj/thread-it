@@ -24,7 +24,7 @@ const Template: IStory<${originProps}> = args => <${storyTitle} {...args} />;
 export const Default = Template.bind({});
 Template.args = {
 
-}`;
+};`;
 
 fs.writeFileSync(pathName, content);
 console.log(`Created ${pathName}`);
