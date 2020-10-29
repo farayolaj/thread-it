@@ -22,7 +22,7 @@ export default {
 const Template: IStory<${originProps}> = args => <${storyTitle} {...args} />;
 
 export const Default = Template.bind({});
-Template.args = {
+Default.args = {
 
 };`;
 
