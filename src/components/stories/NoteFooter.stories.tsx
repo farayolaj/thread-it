@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { NoteEditContext } from '../Note';
 import NoteFooter, { INoteFooterProps } from '../NoteFooter';
 import { IStory } from '../../types';
 
@@ -21,20 +20,4 @@ export const DefaultWithLongTags = Template.bind({});
 DefaultWithLongTags.args = {
   ...Default.args,
   tags: ['main', 'colours', 'body', 'format', 'todo']
-};
-
-const noteEdit = {
-  inEdit: true,
-  toggleEdit: function () {
-    this.inEdit = !this.inEdit;
-  }
-};
-
-export const InEditMode: IStory<INoteFooterProps> = args => (
-  <NoteEditContext.Provider value={noteEdit} >
-    <NoteFooter {...args} />
-  </NoteEditContext.Provider>
-);
-InEditMode.args = {
-  ...Default.args
 };

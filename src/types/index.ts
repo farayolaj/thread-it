@@ -11,15 +11,14 @@ export interface INoteData {
 
 export interface IUser {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   profilePic: string;
 }
 
 /**
  * A generic interface for individual stories
  */
-export interface IStory<T=unknown> {
+export interface IStory<T> {
   (args: T): JSX.Element;
   args?: T
 }

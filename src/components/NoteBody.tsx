@@ -1,27 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Box, Textarea, Text } from '@chakra-ui/core';
 
 import { handleChange } from '../utils';
-import { NoteEditContext } from './Note';
 
-export default function NoteBody({ content }: INoteBodyProps): JSX.Element {
-  const [innerContent, setInnerContent] = useState(content);
-  const { inEdit } = useContext(NoteEditContext) || { inEdit: false };
-
-  /* const setInnerContentWithLimit = newContent => {
-  if (newContent.length <= 96) setInnerContent(newContent);
-}; */
+function NoteBody({ content, onContentChange, inEdit=false }: INoteBodyProps): JSX.Element {
 
   return <Box
     d="flex"
-    justifyContent={innerContent ? 'initial' : 'center'}
-    alignItems={innerContent ? 'initial' : 'center'}
-    minH={32}
+    justifyContent={content ? 'initial' : 'center'}
+    alignItems={content ? 'initial' : 'center'}
   >
     {inEdit ?
       <Textarea
-        value={innerContent}
-        onChange={handleChange(setInnerContent)}
+        value={content}
+        onChange={handleChange(onContentChange)}
         resize="none"
         px="0"
         py="0"
@@ -29,12 +21,12 @@ export default function NoteBody({ content }: INoteBodyProps): JSX.Element {
         h="auto"
         w="100%"
         autoFocus
-      /> : (innerContent ?
+      /> : (content ?
         <Text
           whiteSpace="pre-wrap"
           overflowWrap="break-word"
         >
-          {innerContent}
+          {content}
         </Text> :
         <Text color='gray.500'>
           Nothing here...
@@ -46,4 +38,8 @@ export default function NoteBody({ content }: INoteBodyProps): JSX.Element {
 
 export interface INoteBodyProps {
   content: string;
+  onContentChange: (newContent: string) => void;
+  inEdit?: boolean;
 }
+
+export default NoteBody;

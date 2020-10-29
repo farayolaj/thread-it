@@ -1,40 +1,52 @@
-import { HStack, IconButton, useColorModeValue, VStack } from '@chakra-ui/core';
-import { CloseIcon } from '@chakra-ui/icons';
-import React, { CSSProperties } from 'react';
+import { Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay, HStack, useColorModeValue, VStack } from '@chakra-ui/core';
+import React, { useState } from 'react';
 
-export default function SideBar({ children, style, onClose }: ISideBarProps): JSX.Element {
+import FirebaseAuth from './FirebaseAuth';
+import TagList from './TagList';
+import UserBoard from './UserBoard';
+import { useUser } from '../context/AuthHooks';
+
+export default function SideBar({ isOpen=true, onClose }: ISideBarProps): JSX.Element {
   onClose = onClose ? onClose : () => { return; };
-  const bgColor = useColorModeValue('whiteAlpha.900', 'blackAlpha.900');
+  const bgColor = useColorModeValue('whiteAlpha.900', '#1a202c');
+  const [openAuth, setOpenAuth] = useState(false);
+  const { isUserLoggedIn } = useUser();
+
+  const toggleOpenAuth = () => setOpenAuth(prev => !prev);
 
   return (
-    <HStack 
-      w="fit-content" position="fixed" 
-      spacing="0" align="center" 
-      h="100vh" style={style} 
-      zIndex={10000}
-    >
-      <VStack w="75vw" h="100%"
-        align="normal" 
-        bgColor={bgColor}
-      >
-        {children}
-      </VStack>
-      <IconButton
-        bgColor={bgColor}
-        aria-label="Close Sidebar" 
-        variant="unstyled"
-        icon={<CloseIcon />}
-        color="primary"
-        size="sm"
-        rounded="0"
-        onClick={onClose}
-      />
-    </HStack>
+    <Drawer isOpen={isOpen} onClose={onClose} placement="left" >
+      <DrawerOverlay>
+        <DrawerContent bg="transparent">
+          <HStack
+            w="100%" position="fixed"
+            spacing="0" align="center"
+            h="100vh"
+            zIndex={10000}
+            bg="transparent"
+          >
+            <VStack w="75vw" h="100%"
+              align="normal"
+              bgColor={bgColor}
+            >
+              <UserBoard onLoginClick={toggleOpenAuth} />
+              {!isUserLoggedIn && openAuth ? <FirebaseAuth /> : <TagList />}
+            </VStack>
+            <HStack align="center" h="100vh" onClick={onClose}>
+              <DrawerCloseButton
+                variant="unstyled" color="primary"
+                rounded="0" bgColor={bgColor}
+                pos="initial"
+              />
+            </HStack>
+          </HStack>
+        </DrawerContent>
+      </DrawerOverlay>
+    </Drawer>
   );
 }
 
 export interface ISideBarProps {
-  children: React.ReactNode;
-  style: CSSProperties;
+  isOpen?: boolean;
   onClose?: () => void;
 }

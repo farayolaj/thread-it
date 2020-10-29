@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { IconButton, Stack, Tag, TagCloseButton, TagLabel, useColorMode } from '@chakra-ui/core';
+import { IconButton, Stack, Tag, TagCloseButton, TagLabel } from '@chakra-ui/core';
 
 import TagInput from './TagInput';
 import { SmallAddIcon } from '@chakra-ui/icons';
 
-export default function TagBar({ tags, onTagAdd }: ITagBarProps): JSX.Element {
-  const { toggleColorMode } = useColorMode();
+export default function TagBar({ tags, onTagAdd, onTagDelete }: ITagBarProps): JSX.Element {
+  // const { toggleColorMode } = useColorMode();
   const [showTagInput, setShowTagInput] = useState(false);
   const [tagInput, setTagInput] = useState('');
 
@@ -37,7 +37,9 @@ export default function TagBar({ tags, onTagAdd }: ITagBarProps): JSX.Element {
             <TagLabel fontSize="xs" fontWeight="normal">
               {tag}
             </TagLabel>
-            <TagCloseButton onClick={toggleColorMode} />
+            <TagCloseButton onClick={() => {
+              if (onTagDelete) onTagDelete(tag);
+            }} />
           </Tag>
         ))}
       </Stack>
@@ -46,6 +48,7 @@ export default function TagBar({ tags, onTagAdd }: ITagBarProps): JSX.Element {
 }
 
 export interface ITagBarProps {
-  tags: string[],
-  onTagAdd?: (newTag: string) => void
+  tags: string[];
+  onTagAdd?: (newTag: string) => void;
+  onTagDelete?: (tag: string) => void;
 }

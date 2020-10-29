@@ -1,31 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Flex, IconButton, Text } from '@chakra-ui/core';
 import { DateTime } from 'luxon';
 
 import TagBar, { ITagBarProps } from './TagBar';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { NoteEditContext } from './Note';
 
 export default function NoteFooter({
   time,
   tags,
   onTagAdd,
-  onDelete
+  onTagDelete,
+  onDelete,
+  onEdit
 }: INoteFooterProps): JSX.Element {
-
-  const { toggleEdit } = useContext(NoteEditContext) || {
-    inEdit: false,
-    toggleEdit: () => { return; }
-  };
 
   return (
     <Flex w="100%" direction="row" mt="0" justify="space-between" align="center">
-      <TagBar {...{ tags, onTagAdd }} />
+      <TagBar {...{ tags, onTagAdd, onTagDelete }} />
       <IconButton
         aria-label="Edit note"
         icon={<EditIcon />}
         size="xs"
-        onClick={toggleEdit}
+        onClick={onEdit}
         variant="footer"
         colorScheme="secondary"
         isRound />
@@ -54,4 +50,8 @@ export interface INoteFooterProps {
   onDelete?: () => void;
   /** Function called when add tag button is clicked */
   onTagAdd?: ITagBarProps['onTagAdd'];
+  /** Function called when delete tag button is clicked */
+  onTagDelete?: ITagBarProps['onTagDelete'];
+  /** Function called when edit button is clicked */
+  onEdit?: () => void
 }

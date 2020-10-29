@@ -1,7 +1,6 @@
 import React from 'react';
 
-import ThreadBoard, { IThreadBoardProps } from '../ThreadBoard';
-import data from '../../assets/fake/data.json';
+import ThreadBoard from '../ThreadBoard';
 import { IStory } from '../../types';
 
 export default {
@@ -9,9 +8,6 @@ export default {
   component: ThreadBoard
 };
 
-const Template: IStory<IThreadBoardProps> = args => <ThreadBoard {...args} />;
+const Template: IStory<any> = args => <ThreadBoard {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  thread: data.thread
-};

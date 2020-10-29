@@ -1,8 +1,11 @@
 import { IconButton } from '@chakra-ui/core';
 import { AddIcon, HamburgerIcon } from '@chakra-ui/icons';
 import React from 'react';
+import { useAddNote } from '../context/ThreadHooks';
 
 export default function AppOverlay({ onSideBarOpen }: IAppOverlayProps): JSX.Element {
+  const addNote = useAddNote();
+
   return (
     <>
       <IconButton
@@ -17,13 +20,13 @@ export default function AppOverlay({ onSideBarOpen }: IAppOverlayProps): JSX.Ele
       />
       <IconButton
         pos="fixed"
-        right={1}
+        right={3}
         bottom={3}
         size="sm"
         aria-label="Add new note"
         color="white" bg="primary"
         alignSelf="flex-end" icon={<AddIcon />}
-        mb={5}
+        mb={5} onClick={addNote}
         isRound
       />
     </>

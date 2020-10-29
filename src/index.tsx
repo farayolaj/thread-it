@@ -6,13 +6,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/core';
 import theme from './theme';
+import { ThreadProvider } from './context/ThreadContext';
+import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme} >
-      <ColorModeScript initialColorMode="light" />
-      <App />
-    </ChakraProvider>
+    <AuthProvider>
+      <ThreadProvider>
+        <ChakraProvider theme={theme} >
+          <ColorModeScript initialColorMode="light" />
+          <App />
+        </ChakraProvider>
+      </ThreadProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

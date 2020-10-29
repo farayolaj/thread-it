@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { IStory } from '../../types';
-import { NoteEditContext } from '../Note';
 import NoteBody, { INoteBodyProps } from '../NoteBody';
 
 export default {
@@ -17,21 +16,11 @@ Default.args = {
     `It is pertinent that we know what is going on, as Nigerians.
       
       We must be ready to fight for our rights.`,
+  onContentChange: () => {return;}
 };
 
-const editMode = {
-  inEdit: true,
-  toggleEdit: () => { return; }
-};
-
-export const InEditMode: IStory<INoteBodyProps> = args => (
-  <NoteEditContext.Provider value={editMode}>
-    <NoteBody {...args} />
-  </NoteEditContext.Provider>
-);
+export const InEditMode = Template.bind({});
 InEditMode.args = {
-  content:
-    `It is pertinent that we know what is going on, as Nigerians.
-      
-      We must be ready to fight for our rights.`,
+  ...Default.args,
+  inEdit: true
 };

@@ -1,15 +1,21 @@
 import React from 'react';
-import { Avatar, Button, Flex, Grid, Text, VStack } from '@chakra-ui/core';
+import { Avatar, Button, Flex, Grid, IconButton, Text, useColorMode, VStack } from '@chakra-ui/core';
 
-import { IUser } from '../types';
+import { useAuth, useUser } from '../context/AuthHooks';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-export default function UserBoard({ user }: IUserBoardProps): JSX.Element {
-  let isUserPresent = false, userInfo = null;
+export default function UserBoard({ onLoginClick }: IUserBoardProps): JSX.Element {
+  const { user, isUserLoggedIn } = useUser();
+  const { logout } = useAuth();
+  const { colorMode, toggleColorMode } = useColorMode();
 
-  if (user && user.id) {
-    isUserPresent = true;
+  onLoginClick = onLoginClick ? onLoginClick : () => { return; };
+
+  let userInfo = null;
+
+  if (isUserLoggedIn) {
     userInfo = {
-      name: `${user.lastName} ${user.firstName}`,
+      name: user.name,
       profilePic: user.profilePic
     };
   }
@@ -17,23 +23,31 @@ export default function UserBoard({ user }: IUserBoardProps): JSX.Element {
   return (
     <VStack spacing={4} p={2} bg="secondary" align="normal" >
       <UserInfo info={userInfo} />
-      <Flex justifyContent="space-around">
-        {!isUserPresent ?
-          <>
-            <Button size="sm" rounded="0">Sign In</Button>
-            <Button size="sm" rounded="0">Sign Up</Button>
-          </> : <>
-            <Button size="sm" rounded="0">Sign Out</Button>
-            <Button size="sm" rounded="0">Settings</Button>
-          </>
-        }
+      <Flex justify="space-around" align="center">
+        <>
+          {!isUserLoggedIn ?
+            <Button size="sm" rounded="0" onClick={onLoginClick}>Sign In</Button> :
+            <Button size="sm" rounded="0" onClick={logout}>Sign Out</Button>
+          }
+          <IconButton
+            aria-label="Change theme"
+            size="lg"
+            variant="unstyled"
+            color={colorMode === 'light' ? 'primary' : 'white'}
+            icon={colorMode === 'light' ?
+              <MoonIcon /> :
+              <SunIcon />}
+            onClick={toggleColorMode}
+          />
+          {/* <Button size="sm" rounded="0">Settings</Button> */}
+        </>
       </Flex>
     </VStack>
   );
 }
 
 export interface IUserBoardProps {
-  user: IUser | null;
+  onLoginClick?: () => void;
 }
 
 function UserInfo({ info }: IUserInfoProps): JSX.Element {

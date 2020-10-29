@@ -1,21 +1,13 @@
 import React from 'react';
 
-import TagList, { ITagListProps } from '../TagList';
+import TagList from '../TagList';
 import { IStory } from '../../types';
 
 export default {
-  title: 'TagList',
+  title: 'Core/TagList',
   component: TagList
 };
 
-const Template: IStory<ITagListProps> = args => <TagList {...args} />;
+const Template: IStory<any> = args => <TagList {...args} />;
 
-export const ShortList = Template.bind({});
-ShortList.args = {
-  tags: ['science', 'politics', 'health']
-};
-
-export const LongList = Template.bind({});
-LongList.args = {
-  tags: ['science', 'politics', 'environment', 'justice', 'health', 'education', 'ict', 'security']
-};
+export const Default = Template.bind({});

@@ -1,22 +1,15 @@
 import React from 'react';
 
 import SideBar, { ISideBarProps } from '../SideBar';
-import { IStory, IUser } from '../../types';
-import UserBoard from '../UserBoard';
-import { UserLoggedIn } from './UserBoard.stories';
-import TagList from '../TagList';
-import { LongList } from './TagList.stories';
+import { IStory } from '../../types';
 
 export default {
-  title: 'SideBar',
+  title: 'Core/SideBar',
   component: SideBar
 };
 
 const Template: IStory<ISideBarProps> = args => (
-  <SideBar {...args}>
-    <UserBoard user={UserLoggedIn.args?.user as IUser} />
-    <TagList tags={LongList.args?.tags as string[]} />
-  </SideBar>
+  <SideBar {...args} />
 );
 
-export const DefaultWithLongTagList = Template.bind({});
+export const Default = Template.bind({});
