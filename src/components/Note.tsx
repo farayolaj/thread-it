@@ -35,7 +35,8 @@ export default function Note({
       spacing='0'
       p={1}
       bgColor="secondary"
-      onClick={() => {
+      onClick={ev => {
+        ev.stopPropagation();
         if (!hasFocus) getFocus(id);
       }}
     >

@@ -2,7 +2,7 @@ import { Flex, Text, useTheme } from '@chakra-ui/core';
 import React from 'react';
 import { DateTime } from 'luxon';
 
-export default function Thread({ date, onClick }: IThreadProps): JSX.Element {
+export default function Thread({ date }: IThreadProps): JSX.Element {
   const svgHeight = '6rem';
 
   const theme = useTheme();
@@ -13,7 +13,6 @@ export default function Thread({ date, onClick }: IThreadProps): JSX.Element {
       pl="10%"
       w="80vw"
       alignItems="center"
-      onClick={onClick ? onClick : () => { return; }}
     >
       {date ?
         <DatedThreadSVG height={svgHeight} stroke={stroke} /> :
@@ -57,5 +56,4 @@ function ThreadSVG({ height, stroke }: IThreadSVGProps) {
 
 export interface IThreadProps {
   date?: string;
-  onClick?: () => void;
 }

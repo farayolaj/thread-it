@@ -27,7 +27,13 @@ export default function ThreadBoard(): JSX.Element {
   );
 
   return (
-    <Flex w="100%" overflowY="auto" direction="column" alignItems="center" py={3}>
+    <Flex
+      id="board"
+      w="100%" h="100vh"
+      overflowY="auto" direction="column"
+      alignItems="center" py={3}
+      onClick={() => setFocus('')}
+    >
       <Hanger tag={selectedTag} />
       {Object.entries(groupedThread).map(([date, ids]) =>
         <ThreadGroup key={date} date={date} noteIds={ids} focus={focus} getFocus={setFocus} />)}
@@ -44,7 +50,7 @@ function ThreadGroup({ date, noteIds, focus, getFocus }: IThreadGroupProps) {
     <>
       {noteIds.map((id, index) => (
         <React.Fragment key={id}>
-          <Thread date={index === 0 ? date : undefined} onClick={() => getFocus('')}/>
+          <Thread date={index === 0 ? date : undefined} />
           <Note id={id} hasFocus={focus === id} getFocus={getFocus} />
         </React.Fragment>
       ))}
@@ -65,7 +71,7 @@ interface IThreadGroupProps {
  */
 function Hanger({ tag }: IHangerProps) {
   tag = tag ? tag : 'all';
-  
+
   return (
     <Box w="80vw" p={1} bgColor="primary" color="white">
       <Text fontSize="sm" textAlign="center"><strong>{tag.toUpperCase()}</strong></Text>
