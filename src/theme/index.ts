@@ -1,8 +1,10 @@
 import { extendTheme/* , theme */ } from '@chakra-ui/core';
 // import { merge } from '@chakra-ui/utils';
 
-import Tag from './tag';
 import Button from './button';
+import Drawer from './drawer';
+import Tag from './tag';
+
 
 const customTheme = {
   colors: {
@@ -11,6 +13,7 @@ const customTheme = {
   },
   components: {
     Button,
+    Drawer,
     Tag
   }
 };
