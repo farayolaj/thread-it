@@ -33,7 +33,7 @@ interface IThreadSVGProps {
 
 function DatedThreadSVG({ height, stroke }: IThreadSVGProps) {
   return (
-    <svg viewBox="0 0 10 108" height={height}>
+    <svg viewBox="0 0 10 108" style={{ height }}>
       <g style={{ fill: 'none', stroke: stroke, strokeWidth: 2 }}>
         <line x1="5" y1="0" x2="5" y2="50" />
         <circle
@@ -49,7 +49,7 @@ function DatedThreadSVG({ height, stroke }: IThreadSVGProps) {
 
 function ThreadSVG({ height, stroke }: IThreadSVGProps) {
   return (
-    <svg viewBox="0 0 10 108" height={height}>
+    <svg viewBox="0 0 10 108" style={{ height }}>
       <line x1="5" y1="0" x2="5" y2="108" style={{ stroke: stroke, strokeWidth: 2 }} />
     </svg>
   );
