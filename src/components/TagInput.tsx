@@ -24,5 +24,5 @@ export default function TagInput({ tagInput, setTagInput, onEnter }: ITagInputPr
 export interface ITagInputProps {
   tagInput: string;
   setTagInput: (input: string) => void;
-  onEnter: () => void;
+  onEnter: (ev: React.FormEvent<HTMLFormElement>) => void;
 }

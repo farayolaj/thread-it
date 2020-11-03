@@ -9,7 +9,8 @@ export default function TagBar({ tags, onTagAdd, onTagDelete }: ITagBarProps): J
   const [showTagInput, setShowTagInput] = useState(false);
   const [tagInput, setTagInput] = useState('');
 
-  const onTagAddInner = () => {
+  const onTagAddInner = (ev: React.FormEvent) => {
+    ev.preventDefault();
     if (showTagInput) {
       const newTag = tagInput;
       setShowTagInput(false);
