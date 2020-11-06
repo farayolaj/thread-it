@@ -11,7 +11,7 @@ export const useSelectedTag = () => {
 
 export const useThreadEntities = () => {
   const { state } = useContext(ThreadContext) as IThreadContext;
-  return state.threadEntities;
+  return state.threadEntities || {};
 };
 
 export const useNote = (id: string) => {

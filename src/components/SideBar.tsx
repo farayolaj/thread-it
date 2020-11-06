@@ -28,6 +28,7 @@ export default function SideBar({ isOpen=true, onClose }: ISideBarProps): JSX.El
             <VStack w="75vw" h="100%"
               align="normal"
               bgColor={bgColor}
+              spacing={5}
             >
               <UserBoard onLoginClick={toggleOpenAuth} />
               {!isUserLoggedIn && openAuth ? <FirebaseAuth /> : <TagList />}

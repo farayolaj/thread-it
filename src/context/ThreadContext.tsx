@@ -1,10 +1,11 @@
 import crypto from 'crypto';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import createEntityAdapter from '../utils/entityAdapter';
-import data from '../assets/fake/data.json';
 import { INoteData } from '../types';
 import FireStorage from '../dao';
+import { useUser } from './AuthHooks';
 
 const ThreadContext = React.createContext<IThreadContext | null>(null);
 
@@ -27,12 +28,34 @@ export interface IThreadContext {
   selectTag: (tag: string) => void;
 }
 
+/* Issues
+- fix first time adding tag to firestore
+- fix signin issue
+  */
+
 export function ThreadProvider({ children }: { children: React.ReactNode }): JSX.Element {
-  const { ids, entities } = createEntityAdapter<INoteData>(data.thread);
-  const [threadIds, setThreadIds] = useState(ids);
-  const [threadEntities, setThreadEntities] = useState(entities);
-  const [tags, setTags] = useState(data.tags);
+  const [threadIds, setThreadIds] = useState<string[]>([]);
+  const [threadEntities, setThreadEntities] = useState<{ [id: string]: INoteData }>({});
+  const [tags, setTags] = useState<string[]>([]);
   const [selectedTag, setSelectedTag] = useState('all');
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user) {
+      FireStorage.getFirstPage(selectedTag)
+        .then(({ notes, tags }) => {
+          const { ids, entities } = createEntityAdapter<INoteData>(notes);
+          /* setThreadEntities called first because of lack of batching
+              setting ids first will cause an error since it refers to entities which are not yet set
+          */
+          ReactDOM.unstable_batchedUpdates(() => {
+            setTags(tags);
+            setThreadEntities(entities);
+            setThreadIds(ids);
+          });
+        });
+    }
+  }, [selectedTag, user]);
 
   const value: IThreadContext = {
     state: { threadIds, threadEntities, tags, selectedTag },
@@ -50,19 +73,19 @@ export function ThreadProvider({ children }: { children: React.ReactNode }): JSX
       FireStorage.editNote(id, content);
     },
     newNote: () => {
-      const id = crypto.randomBytes(64).toString('hex');
+      const id = crypto.randomBytes(16).toString('hex');
       setThreadIds(prev => [...prev, id]);
       const note: INoteData = {
         id,
         content: '',
-        tags: selectedTag && selectedTag !== 'all' ? [ 'all', selectedTag ] : [ 'all' ],
+        tags: selectedTag && selectedTag !== 'all' ? ['all', selectedTag] : ['all'],
         time: Date.now(),
       };
       setThreadEntities(prev => ({ ...prev, [id]: note }));
       FireStorage.addNewNote(note);
     },
     addTag: (id, tag) => {
-      if (!tags.includes(tag)) setTags(oldTags => [ ...oldTags, tag ]);
+      if (!tags.includes(tag)) setTags(oldTags => [...oldTags, tag]);
 
       setThreadEntities(prev => {
         const note = prev[id];
