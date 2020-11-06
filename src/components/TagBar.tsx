@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton, Stack, Tag, TagCloseButton, TagLabel } from '@chakra-ui/core';
 
 import TagInput from './TagInput';
-import { SmallAddIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 
 export default function TagBar({ tags, onTagAdd, onTagDelete }: ITagBarProps): JSX.Element {
   // const { toggleColorMode } = useColorMode();
@@ -22,7 +22,7 @@ export default function TagBar({ tags, onTagAdd, onTagDelete }: ITagBarProps): J
     <>
       <IconButton
         aria-label="Add tag"
-        icon={<SmallAddIcon />}
+        icon={<AddIcon />}
         size="xs"
         onClick={onTagAddInner}
         variant="footer"

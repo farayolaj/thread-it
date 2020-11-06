@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import createEntityAdapter from '../utils/entityAdapter';
 import { INoteData } from '../types';
-import FireStorage from '../dao';
+import FireStorage from '../datasource';
 import { useUser } from './AuthHooks';
 
 const ThreadContext = React.createContext<IThreadContext | null>(null);
@@ -27,11 +27,6 @@ export interface IThreadContext {
   removeTag: (id: NoteId, tag: string) => void;
   selectTag: (tag: string) => void;
 }
-
-/* Issues
-- fix first time adding tag to firestore
-- fix signin issue
-  */
 
 export function ThreadProvider({ children }: { children: React.ReactNode }): JSX.Element {
   const [threadIds, setThreadIds] = useState<string[]>([]);
