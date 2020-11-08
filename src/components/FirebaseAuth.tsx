@@ -5,9 +5,13 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 import { auth } from '../firebase';
 
-const uiConfig = {
+const uiConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
   signInOptions: [
+    {
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: true
+    },
     firebase.auth.GoogleAuthProvider.PROVIDER_ID
   ],
   callbacks: {
@@ -18,7 +22,8 @@ const uiConfig = {
 function FirebaseAuth(): JSX.Element {
   return (
     <Box>
-      <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />
+      <StyledFirebaseAuth firebaseAuth={auth} 
+        css={{background: 'transparent'}} uiConfig={uiConfig} />
     </Box>
   );
 }
