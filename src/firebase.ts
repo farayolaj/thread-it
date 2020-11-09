@@ -20,4 +20,4 @@ app.analytics();
 export const auth = app.auth();
 export const firestore = app.firestore();
 firestore.enablePersistence();
-export default app;
+export default firebase;

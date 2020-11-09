@@ -3,6 +3,8 @@ import React from 'react';
 import { DateTime } from 'luxon';
 
 export default function Thread({ date }: IThreadProps): JSX.Element {
+  const svgHeight = '6rem';
+
   const theme = useTheme();
   const stroke = theme.colors.primary;
 
@@ -13,8 +15,8 @@ export default function Thread({ date }: IThreadProps): JSX.Element {
       alignItems="center"
     >
       {date ?
-        <DatedThreadSVG height={'6rem'} stroke={stroke} /> :
-        <ThreadSVG height={'3rem'} stroke={stroke} />
+        <DatedThreadSVG height={svgHeight} stroke={stroke} /> :
+        <ThreadSVG height={svgHeight} stroke={stroke} />
       }
       {date ? <Text ml="5%" fontSize="sm" color="primary">
         {DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED)}

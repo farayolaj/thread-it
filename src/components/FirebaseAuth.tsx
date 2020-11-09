@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/core';
-import firebase from 'firebase/app';
+import firebase from '../firebase';
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -22,7 +22,7 @@ const uiConfig: firebaseui.auth.Config = {
 function FirebaseAuth(): JSX.Element {
   return (
     <Box>
-      <StyledFirebaseAuth firebaseAuth={auth} 
+      <StyledFirebaseAuth firebaseAuth={auth}
         css={{background: 'transparent'}} uiConfig={uiConfig} />
     </Box>
   );
