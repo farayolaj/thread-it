@@ -1,5 +1,4 @@
-import { extendTheme/* , theme */ } from '@chakra-ui/core';
-// import { merge } from '@chakra-ui/utils';
+import { extendTheme/* , theme */ } from '@chakra-ui/react';
 
 import Button from './button';
 import Drawer from './drawer';

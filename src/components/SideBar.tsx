@@ -1,4 +1,4 @@
-import { Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay, HStack, useColorModeValue, VStack } from '@chakra-ui/core';
+import { Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay, HStack, useColorModeValue, VStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 import FirebaseAuth from './FirebaseAuth';
@@ -17,7 +17,7 @@ export default function SideBar({ isOpen=true, onClose }: ISideBarProps): JSX.El
   return (
     <Drawer isOpen={isOpen} onClose={onClose} placement="left" >
       <DrawerOverlay>
-        <DrawerContent bg="transparent">
+        <DrawerContent boxShadow="none" bg="transparent">
           <HStack
             w="100%" position="fixed"
             spacing="0" align="center"

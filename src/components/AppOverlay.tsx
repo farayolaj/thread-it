@@ -1,4 +1,4 @@
-import { IconButton } from '@chakra-ui/core';
+import { IconButton } from '@chakra-ui/react';
 import { AddIcon, HamburgerIcon } from '@chakra-ui/icons';
 import React from 'react';
 import { useAddNote } from '../context/ThreadHooks';

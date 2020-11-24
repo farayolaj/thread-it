@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button, Flex, Grid, IconButton, Text, useColorMode, VStack } from '@chakra-ui/core';
+import { Avatar, Button, Flex, Grid, IconButton, Text, useColorMode, VStack } from '@chakra-ui/react';
 
 import { useAuth, useUser } from '../context/AuthHooks';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';

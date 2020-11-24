@@ -1,4 +1,4 @@
-import { Flex, Text, useTheme } from '@chakra-ui/core';
+import { Flex, Text, useTheme } from '@chakra-ui/react';
 import React from 'react';
 import { DateTime } from 'luxon';
 

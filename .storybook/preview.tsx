@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import { AuthProvider } from '../src/context/AuthContext';
 import theme from '../src/theme';
@@ -12,7 +12,6 @@ export const parameters = {
 export const decorators = [
   Story => (
     <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode="system" />
       <Story />
     </ChakraProvider>
   ),

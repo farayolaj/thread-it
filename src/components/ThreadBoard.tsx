@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Flex, Text } from '@chakra-ui/core';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import groupBy from 'lodash.groupby';
 import { DateTime } from 'luxon';
 

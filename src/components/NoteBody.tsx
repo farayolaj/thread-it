@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Textarea, Text } from '@chakra-ui/core';
+import { Box, Textarea, Text } from '@chakra-ui/react';
 
 import { handleChange } from '../utils';
 
