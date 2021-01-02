@@ -1,4 +1,4 @@
-import { Flex, Text, useTheme } from '@chakra-ui/core';
+import { Flex, Text, useTheme } from '@chakra-ui/react';
 import React from 'react';
 import { DateTime } from 'luxon';
 
@@ -11,7 +11,7 @@ export default function Thread({ date }: IThreadProps): JSX.Element {
   return (
     <Flex
       pl="10%"
-      w="80vw"
+      w="80%"
       alignItems="center"
     >
       {date ?

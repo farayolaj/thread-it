@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Flex, Text } from '@chakra-ui/core';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import groupBy from 'lodash.groupby';
 import { DateTime } from 'luxon';
 
@@ -37,7 +37,7 @@ export default function ThreadBoard(): JSX.Element {
   return (
     <Flex
       id="board"
-      w="100%" h="100vh"
+      w={['100%', null, '75vw']} h="100vh"
       overflowY="auto" direction="column"
       alignItems="center" py={3}
       onClick={() => setFocus('')}
@@ -82,7 +82,7 @@ function Hanger({ tag }: IHangerProps) {
   tag = tag ? tag : 'all';
 
   return (
-    <Box w="80vw" p={1} bgColor="primary" color="white" pos="sticky" top={-3}>
+    <Box w="80%" p={1} bgColor="primary" color="white" pos="sticky" top={-3}>
       <Text fontSize="sm" textAlign="center"><strong>{tag.toUpperCase()}</strong></Text>
     </Box>
   );

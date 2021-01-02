@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconButton, Stack, Tag, TagCloseButton, TagLabel } from '@chakra-ui/core';
+import { IconButton, Stack, Tag, TagCloseButton, TagLabel } from '@chakra-ui/react';
 
 import TagInput from './TagInput';
 import { AddIcon } from '@chakra-ui/icons';

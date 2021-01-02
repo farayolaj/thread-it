@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import createEntityAdapter from '../utils/entityAdapter';
@@ -40,7 +40,7 @@ export function ThreadProvider({ children }: { children: React.ReactNode }): JSX
       FireStorage.getFirstPage(selectedTag)
         .then(({ notes, tags }) => {
           const { ids, entities } = createEntityAdapter<INoteData>(notes);
-          /* setThreadEntities called first because of lack of batching
+          /* setThreadEntities called first because of lack of batching in promises
               setting ids first will cause an error since it refers to entities which are not yet set
           */
           ReactDOM.unstable_batchedUpdates(() => {
@@ -52,7 +52,7 @@ export function ThreadProvider({ children }: { children: React.ReactNode }): JSX
     }
   }, [selectedTag, user]);
 
-  const value: IThreadContext = {
+  const value: IThreadContext = useMemo(() => ({
     state: { threadIds, threadEntities, tags, selectedTag },
     editNote: (id, content) => {
       setThreadEntities(prev => {
@@ -121,7 +121,15 @@ export function ThreadProvider({ children }: { children: React.ReactNode }): JSX
       FireStorage.removeTag(id, tag);
     },
     selectTag: tag => setSelectedTag(tag)
-  };
+  }), [
+    threadIds, 
+    threadEntities, 
+    tags, 
+    selectedTag, 
+    setThreadEntities, 
+    setThreadIds, 
+    setTags, 
+    setSelectedTag]);
 
   return (
     <ThreadContext.Provider value={value} >

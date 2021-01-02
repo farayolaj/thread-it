@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, IconButton, Text } from '@chakra-ui/core';
+import { Flex, IconButton, Text } from '@chakra-ui/react';
 import { DateTime } from 'luxon';
 
 import TagBar, { ITagBarProps } from './TagBar';

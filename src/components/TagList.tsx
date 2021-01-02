@@ -1,4 +1,4 @@
-import { Box, StackDivider, VStack } from '@chakra-ui/core';
+import { Box, StackDivider, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { useSelectedTag, useTags } from '../context/ThreadHooks';
 

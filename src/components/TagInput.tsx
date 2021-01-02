@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Tag } from '@chakra-ui/core';
+import { Input, Tag } from '@chakra-ui/react';
 
 import { handleChange } from '../utils';
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Stack } from '@chakra-ui/core';
+import React, { MouseEvent, useState } from 'react';
+import { Stack } from '@chakra-ui/react';
 
 import { INoteData } from '../types';
 import NoteBody from './NoteBody';
@@ -31,11 +31,11 @@ export default function Note({
 
   return (
     <Stack
-      width="70vw"
+      width="70%"
       spacing='0'
       p={1}
       bgColor="secondary"
-      onClick={ev => {
+      onClick={(ev: MouseEvent) => {
         ev.stopPropagation();
         if (!hasFocus) getFocus(id);
       }}
