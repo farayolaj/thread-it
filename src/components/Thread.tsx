@@ -11,7 +11,7 @@ export default function Thread({ date }: IThreadProps): JSX.Element {
   return (
     <Flex
       pl="10%"
-      w="80vw"
+      w="80%"
       alignItems="center"
     >
       {date ?

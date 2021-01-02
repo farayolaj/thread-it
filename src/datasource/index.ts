@@ -104,7 +104,7 @@ class FireStorage {
         .update({
           tags: firestore.FieldValue.arrayUnion(tag)
         });
-      store.collection('users').doc(uid).set({ tags: [] }, { merge: true });
+      // store.collection('users').doc(uid).set({ tags: [] }, { merge: true });
       store.collection('users').doc(uid).update({
         tags: firestore.FieldValue.arrayUnion(tag)
       });

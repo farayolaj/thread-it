@@ -31,7 +31,7 @@ export default function Note({
 
   return (
     <Stack
-      width="70vw"
+      width="70%"
       spacing='0'
       p={1}
       bgColor="secondary"

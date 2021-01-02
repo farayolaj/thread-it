@@ -9,6 +9,7 @@ export default function AppOverlay({ onSideBarOpen }: IAppOverlayProps): JSX.Ele
   return (
     <>
       <IconButton
+        d={[null, null, 'none']}
         pos="fixed"
         left={1}
         top="calc(50vh - 1.25rem)"
