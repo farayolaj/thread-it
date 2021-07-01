@@ -26,8 +26,8 @@ export default function UserBoard({ onLoginClick }: IUserBoardProps): JSX.Elemen
       <Flex justify="space-around" align="center">
         <>
           {!isUserLoggedIn ?
-            <Button size="sm" rounded="0" onClick={onLoginClick}>Sign In</Button> :
-            <Button size="sm" rounded="0" onClick={logout}>Sign Out</Button>
+            <Button size="sm" rounded="1rem" px={5} onClick={onLoginClick}>Sign In</Button> :
+            <Button size="sm" rounded="1rem" px={5} onClick={logout}>Sign Out</Button>
           }
           <IconButton
             aria-label="Change theme"
@@ -42,7 +42,7 @@ export default function UserBoard({ onLoginClick }: IUserBoardProps): JSX.Elemen
           {/* <Button size="sm" rounded="0">Settings</Button> */}
         </>
       </Flex>
-    </VStack>
+    </VStack >
   );
 }
 
