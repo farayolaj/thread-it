@@ -34,6 +34,7 @@ export default function Note({
       width="70%"
       spacing='0'
       p={1}
+      borderRadius="0.5rem"
       bgColor="secondary"
       onClick={(ev: MouseEvent) => {
         ev.stopPropagation();
@@ -45,7 +46,7 @@ export default function Note({
         <NoteFooter
           tags={note.tags} time={note.time}
           onDelete={deleteNote} onTagAdd={addTag}
-          onTagDelete={removeTag} onEdit={onEdit} 
+          onTagDelete={removeTag} onEdit={onEdit}
         /> :
         null
       }

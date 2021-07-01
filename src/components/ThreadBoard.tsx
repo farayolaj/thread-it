@@ -82,7 +82,7 @@ function Hanger({ tag }: IHangerProps) {
   tag = tag ? tag : 'all';
 
   return (
-    <Box w="80%" p={1} bgColor="primary" color="white" pos="sticky" top={-3}>
+    <Box w="80%" borderRadius="1rem" p={1} bgColor="primary" color="white" pos="sticky" top={-3}>
       <Text fontSize="sm" textAlign="center"><strong>{tag.toUpperCase()}</strong></Text>
     </Box>
   );
