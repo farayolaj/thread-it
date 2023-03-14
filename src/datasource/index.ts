@@ -122,6 +122,23 @@ class FireStorage {
         });
     }
   }
+
+  // Test before use
+  static deleteTag(tag: string): void {
+    const uid = getCurrentUserId();
+    if (uid) {
+      store.collection('users').doc(uid)
+        .update({
+          tags: firestore.FieldValue.arrayRemove(tag)
+        });
+      
+      store.collection('users').doc(uid)
+        .collection('notes').where('tag', '==', tag)
+        .get().then(res => res.forEach(doc => doc.ref.update({
+          tags: firestore.FieldValue.arrayRemove(tag)
+        })));
+    }
+  }
 }
 
 export default FireStorage;

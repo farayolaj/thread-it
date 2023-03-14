@@ -25,6 +25,7 @@ export interface IThreadContext {
   deleteNote: (id: NoteId) => void;
   addTag: (id: NoteId, tag: string) => void;
   removeTag: (id: NoteId, tag: string) => void;
+  deleteTag: (tag: string) => void;
   selectTag: (tag: string) => void;
 }
 
@@ -120,15 +121,34 @@ export function ThreadProvider({ children }: { children: React.ReactNode }): JSX
 
       FireStorage.removeTag(id, tag);
     },
+    // Test before use
+    deleteTag: tag => {
+      if (selectedTag === tag) {
+        const nextSelectedTag = tags.find(otherTag => tag !== otherTag) || 'all';
+        setSelectedTag(nextSelectedTag);
+      }
+      setThreadEntities(prev => {
+        Object.keys(prev).forEach(id => {
+          const note = prev[id];
+          return {
+            ...note,
+            tags: note.tags.filter(otherTag => tag !== otherTag)
+          };
+        });
+        return { ...prev };
+      });
+
+      FireStorage.deleteTag(tag);
+    },
     selectTag: tag => setSelectedTag(tag)
   }), [
-    threadIds, 
-    threadEntities, 
-    tags, 
-    selectedTag, 
-    setThreadEntities, 
-    setThreadIds, 
-    setTags, 
+    threadIds,
+    threadEntities,
+    tags,
+    selectedTag,
+    setThreadEntities,
+    setThreadIds,
+    setTags,
     setSelectedTag]);
 
   return (
